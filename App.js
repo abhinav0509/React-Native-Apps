@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import SearchInput from "./components/SearchInput";
 import { useState, useEffect } from "react";
+import getImageForWeather from "./utils/getImageForWeather";
 
 export default function App() {
   const [location, setLocation] = useState("Ranchi");
@@ -19,26 +20,6 @@ export default function App() {
   const [icon, setIcon] = useState("");
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
-
-  const getImageForWeather = (condition) => {
-    const images = {
-      Sunny: require("./assets/clear.png"),
-      Fog: require("./assets/fog.jpeg"),
-      Overcast: require("./assets/overcast.jpeg"),
-      Mist: require("./assets/fog.jpeg"),
-      Hail: require("./assets/hail.png"),
-      "Heavy freezing drizzle": require("./assets/heavy-cloud.png"),
-      "Partly cloudy": require("./assets/light-cloud.png"),
-      "Heavy rain": require("./assets/heavy-rain.png"),
-      "Light rain": require("./assets/light-rain.png"),
-      Showers: require("./assets/showers.png"),
-      "Light sleet": require("./assets/sleet.png"),
-      "Light snow": require("./assets/snow.png"),
-      "Thundery outbreaks possible": require("./assets/thunder.png"),
-    };
-
-    return images[condition];
-  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -79,6 +60,8 @@ export default function App() {
         imageStyle={styles.image}
       >
         <View style={styles.detailsContainer}>
+          <Text style={styles.largeText}>ClimateCheck</Text>
+
           <ActivityIndicator animating={!loading} color="black" size="large" />
 
           {error && (
@@ -158,8 +141,10 @@ const styles = StyleSheet.create({
     fontFamily: Platform.OS === "ios" ? "AvenirNext-Regular" : "Roboto",
     color: "white",
   },
+
   largeText: {
     fontSize: 44,
+    color: "white",
   },
   smallText: {
     fontSize: 18,
