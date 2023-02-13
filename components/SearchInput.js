@@ -1,34 +1,42 @@
-import { TextInput,StyleSheet,View } from "react-native"
+import { TextInput, StyleSheet, View } from "react-native";
 
-const SearchInput = ({placeholder,setLocation}) => {
+const SearchInput = ({
+  placeholder,
+  setLocation,
+  setIcon,
+  setConditionText,
+}) => {
+  const handleChange = (newLocation) => {
+    setLocation(newLocation);
+    setIcon("");
+    setConditionText("");
+  };
   return (
     <View style={styles.container}>
-          <TextInput
-                    
-                    clearButtonMode="always" 
-                    onChangeText={newLocation=>setLocation(newLocation)}
-                    style={styles.textInput}
-                    placeholder={placeholder}
-                    placeholderTextColor="white">
-          </TextInput>
+      <TextInput
+        clearButtonMode="always"
+        onChangeText={(newLocation) => handleChange(newLocation)}
+        style={styles.textInput}
+        placeholder={placeholder}
+        placeholderTextColor="white"
+      ></TextInput>
     </View>
-  )
-}
-const styles=StyleSheet.create({
-    textInput:{
-        backgroundColor:'#666',
-        color:'white',
-        height:40,
-        width:300,
-        alignSelf:'center',
-        paddingHorizontal:10,
-        borderRadius:6,
-     },
-     container:{
-      flex:1,
-      backgroundColor:'#34495E'
-     }
-     
-})
+  );
+};
+const styles = StyleSheet.create({
+  textInput: {
+    flex: 1,
+    color: "white",
+    width: 300,
+  },
+  container: {
+    height: 40,
+    marginTop: 10,
+    backgroundColor: "#666",
+    marginHorizontal: 40,
+    paddingHorizontal: 10,
+    borderRadius: 5,
+  },
+});
 
-export default SearchInput
+export default SearchInput;
