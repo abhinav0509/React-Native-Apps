@@ -60,7 +60,7 @@ export default function App() {
         imageStyle={styles.image}
       >
         <View style={styles.detailsContainer}>
-          <Text style={styles.largeText}>ClimateCheck</Text>
+          <Text style={styles.largeText}>WeatherMate</Text>
 
           <ActivityIndicator animating={!loading} color="black" size="large" />
 
